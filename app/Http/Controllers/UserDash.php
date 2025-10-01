@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\UniqueConstraintViolationException; // Included, although standard validation is better
 
 class UserDash extends Controller
 {
@@ -34,11 +35,14 @@ class UserDash extends Controller
      */
     public function store(Request $request)
     {
+        // ----------------------------------------------------
+        // FIX: Added 'unique:users,pinLogin' for creation
+        // ----------------------------------------------------
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
-            'pinLogin' => ['required', 'digits:4'],
+            'pinLogin' => ['required', 'digits:4', 'unique:users,pinLogin'], 
             'role' => ['required', 'string', 'exists:roles,name'],
         ]);
 
@@ -71,10 +75,15 @@ class UserDash extends Controller
     {
         $user = User::findOrFail($id);
 
+        // ----------------------------------------------------
+        // FIX: Added 'unique' with 'ignore($user->id)' for update
+        // ----------------------------------------------------
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            // Ignore the current user's email ID
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'pinLogin' => ['required', 'digits:4'],
+            // Ignore the current user's PIN ID
+            'pinLogin' => ['required', 'digits:4', Rule::unique('users', 'pinLogin')->ignore($user->id)], 
             'role' => ['required', 'string', 'exists:roles,name'],
         ]);
 

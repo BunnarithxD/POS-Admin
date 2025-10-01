@@ -40,15 +40,14 @@ class UserSeeder extends Seeder
             ]
         ] ;
 
-        foreach($Users as $user){
-            $create_user =User::create([
-                'name' => $user['name'],
-                'email' => $user['email'],
-                'password' => $user['password'],
-                'pinLogin' =>$user['pinLogin']
-              
+        foreach($Users as $user_data){
+            $user = User::create([
+                'name' => $user_data['name'],
+                'email' => $user_data['email'],
+                'password' => $user_data['password'],
+                'pinLogin' =>$user_data['pinLogin']
             ]);
+            $user->assignRole($user_data['role']);
         }
-        $create_user->assignRole($user['role']);
     }
 }

@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="boydPage" style="color: white; padding: 15px">
-        welcome youtube to my guy !!!! 
+        Welcome to Admin Panel ! 
     </div>
 </body>
 </html>
