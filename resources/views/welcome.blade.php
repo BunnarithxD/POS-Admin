@@ -165,9 +165,7 @@
         </header>
 
     <div class="welcome-container">
-        {{-- <div class="logo">
-            <i class="fas fa-cube"></i>
-        </div> --}}
+     
         <h1>Welcome to Admin Panel</h1>
         <p class="welcome-text">
             Simple, clean, and efficient administration for your platform. 

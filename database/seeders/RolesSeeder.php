@@ -18,7 +18,7 @@ class RolesSeeder extends Seeder
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // 1. Define Permissions
+        //  Define Permissions
         $permissions = [
             'write articles', 'read articles', 'edit articles', 'delete articles'
         ];
@@ -27,7 +27,7 @@ class RolesSeeder extends Seeder
             Permission::firstOrCreate(['name' => $permission]);
         }
         
-        // 2. Define Roles and their Permissions
+        //  Define Roles and their Permissions
         $rolesAndPermissions = [
             'admin' => ['write articles', 'read articles', 'edit articles', 'delete articles'],
             'manager' => ['read articles', 'edit articles'],
@@ -45,7 +45,7 @@ class RolesSeeder extends Seeder
             }
         }
 
-        // 3. Assign admin role to first user
+        // Assign admin role to first user
         $user = User::first();
         if ($user && $admin && !$user->hasRole('admin')) {
             $user->assignRole($admin);

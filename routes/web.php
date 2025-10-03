@@ -21,16 +21,17 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    // Admin-only routes
-    Route::middleware(['role:admin'])->group(function () {
 
-        // Users management
-        Route::resource('users', UserDash::class);
 
-        // Categories management
-        Route::resource('categories', CategoryController::class);
+    // Users (admin & manager only)
+    Route::resource('users', UserDash::class)
+        ->middleware('role:admin|manager');
 
-        // Products management
-        Route::resource('products', ProductController::class);
-    });
+    // Categories (admin, manager, waiter)
+    Route::resource('categories', CategoryController::class)
+        ->middleware('role:admin|manager|waiter');
+
+    // Products (admin, manager, waiter)
+    Route::resource('products', ProductController::class)
+        ->middleware('role:admin|manager|waiter');
 });

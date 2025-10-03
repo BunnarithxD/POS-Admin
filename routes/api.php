@@ -18,7 +18,6 @@ Route::post('/pin-login', function (Request $request) {
         ], 401);
     }
 
-    // Optional: create token for future requests
     $token = $user->createToken('api-token')->plainTextToken;
 
     return response()->json([

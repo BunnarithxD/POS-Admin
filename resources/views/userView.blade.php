@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-500 leading-tight">
             {{ __('User Management') }}
         </h2>
     </x-slot>
@@ -11,8 +11,8 @@
                 <div class="p-6">
                     <div class="flex justify-between items-center mb-8">
                         <div>
-                            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">User Management</h1>
-                            <p class="text-gray-600 dark:text-gray-400 mt-1">Manage your team members and their roles</p>
+                            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Create Users</h1>
+                            {{-- <p class="text-gray-600 dark:text-gray-400 mt-1">Manage your team members and their roles</p> --}}
                         </div>
                         <a href="{{ route('users.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md font-medium text-sm transition-colors duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 inline-flex items-center space-x-1">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg><span>Add User</span>
@@ -47,9 +47,7 @@
                             <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                                 <div class="flex items-start justify-between">
                                     <div class="flex items-center space-x-4">
-                                        {{-- <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md">
-                                            {{ strtoupper(substr($user->name, 0, 1)) }}
-                                        </div> --}}
+                                        
 
                                         <div>
                                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $user->name }}</h3>
